@@ -38,7 +38,7 @@
 #include "stm32f4xx.h"
 #include "stm32f429i_discovery.h"
 #include "stm32f429i_discovery_sdram.h"
-#include "../Common/fonts.h"
+#include "fonts.h"
 
 /** @addtogroup Utilities
   * @{

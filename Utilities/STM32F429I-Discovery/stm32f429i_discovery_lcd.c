@@ -28,8 +28,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f429i_discovery_lcd.h"
-#include "../Common/fonts.c"
-
 
 /** @addtogroup Utilities
   * @{

@@ -30,7 +30,6 @@
 #include "usb_hcd_int.h"
 #include "usbh_core.h"
 
-#include "test_program.h"
 #include "usb_core.h"
 #include "usbd_core.h"
 #include "usbd_hid_core.h"

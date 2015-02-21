@@ -14,14 +14,14 @@
 #include <string.h>
 #include <math.h>
 #include "WM.h"
-#include "..\ICON\ICON_paint.c"
-#include "..\ICON\ICON_info.c"
-#include "..\ICON\ICON_serial_port.c"
-#include "..\ICON\ICON_task_manager.c"
-#include "..\ICON\ICON_Bluetooth.c"
-#include "..\ICON\ICON_BluetoothStatus.c"
-#include "..\ICON\ICON_GPS.c"
-#include "..\ICON\ICON_GPS_Status.c"
+#include "..\ICON\ICON_paint.h"
+#include "..\ICON\ICON_info.h"
+#include "..\ICON\ICON_serial_port.h"
+#include "..\ICON\ICON_task_manager.h"
+#include "..\ICON\ICON_Bluetooth.h"
+#include "..\ICON\ICON_BluetoothStatus.h"
+#include "..\ICON\ICON_GPS.h"
+#include "..\ICON\ICON_GPS_Status.h"
 #include "cpu_utils.h"
 
 /* External variables --------------------------------------------------------*/

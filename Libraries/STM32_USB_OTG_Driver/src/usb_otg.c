@@ -78,7 +78,7 @@
   * @{
   */ 
 
-uint32_t USB_OTG_HandleOTG_ISR(USB_OTG_CORE_HANDLE *pdev);
+static uint32_t USB_OTG_HandleOTG_ISR(USB_OTG_CORE_HANDLE *pdev);
 
 static uint32_t USB_OTG_HandleConnectorIDStatusChange_ISR(USB_OTG_CORE_HANDLE *pdev);
 static uint32_t USB_OTG_HandleSessionRequest_ISR(USB_OTG_CORE_HANDLE *pdev);
