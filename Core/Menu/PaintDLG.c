@@ -1,12 +1,12 @@
 /**
-  ******************************************************************************
-  * @file    PaintDLG.c
-  * @author  Lucian Zala
-  * @version V1.0.1
-  * @date    01-03-2014
-  * @brief   PAINT interface program body
-  ******************************************************************************
-  */
+	******************************************************************************
+	* @file    PaintDLG.c
+	* @author  Lucian Zala
+	* @version V1.0.1
+	* @date    01-03-2014
+	* @brief   PAINT interface program body
+	******************************************************************************
+*/
 
 #include "DIALOG.h"
 #include "global_includes.h"
@@ -40,8 +40,8 @@
 WM_HWIN  vFrame;
 WM_HWIN drawWin;
 GUI_RECT drawAreaRect;
-static uint8_t flg;
 GUI_COLOR currentColor = GUI_BLUE;
+static uint8_t flg;
 
 /*********************************************************************
 *
@@ -64,19 +64,20 @@ static const GUI_WIDGET_CREATE_INFO _aDialogPaintCreate[] = {
 };
 
 /**Paint Button color Array*/
-GUI_COLOR  PaintButtonsColor[NO_OF_PAINT_BUTTONS] = {GUI_BLUE,
-													GUI_GREEN,
-													GUI_RED,
-													GUI_MAGENTA,
-													GUI_YELLOW,
-													GUI_BLACK,
-													GUI_WHITE,
-													GUI_WHITE,
-													GUI_WHITE,
-													GUI_WHITE,
-													GUI_WHITE,
-													GUI_WHITE,
-													};
+GUI_COLOR  PaintButtonsColor[NO_OF_PAINT_BUTTONS] = {
+	GUI_BLUE,
+	GUI_GREEN,
+	GUI_RED,
+	GUI_MAGENTA,
+	GUI_YELLOW,
+	GUI_BLACK,
+	GUI_WHITE,
+	GUI_WHITE,
+	GUI_WHITE,
+	GUI_WHITE,
+	GUI_WHITE,
+	GUI_WHITE,
+};
 /*********************************************************************
 *
 *       Static code
@@ -89,28 +90,28 @@ GUI_COLOR  PaintButtonsColor[NO_OF_PAINT_BUTTONS] = {GUI_BLUE,
   * @param  pMsg: pointer to a data structure of type WM_MESSAGE
   * @retval None
   */
-static void _cbDrawWindow(WM_MESSAGE *pMsg) {
-	static uint8_t xpos,ypos,sendDrawReq;
-	const WM_PID_STATE_CHANGED_INFO * pInfo;
+static void _cbDrawWindow (WM_MESSAGE* pMsg) {
+	const WM_PID_STATE_CHANGED_INFO* pInfo;
 	drawWin = pMsg->hWin;
+	static uint8_t xpos,ypos,sendDrawReq;
 
 	switch (pMsg->MsgId) {
 		case WM_CREATE:
 			break;
 		case WM_PAINT:
-			WM_GetInsideRect(&drawAreaRect);
-			GUI_SetBkColor(GUI_WHITE);
+			WM_GetInsideRect (&drawAreaRect);
+			GUI_SetBkColor (GUI_WHITE);
 			if(!flg) {
 				/* lock GUI clear */
 				flg = 1;
-				GUI_Clear();
+				GUI_Clear ();
 				break;
 			}
-			GUI_SetColor(currentColor);
-			GUI_SetPenSize(8);
+			GUI_SetColor (currentColor);
+			GUI_SetPenSize (8);
 			if(sendDrawReq) {
 				sendDrawReq = 0; /*clear request*/
-				GUI_DrawPoint(xpos,ypos);
+				GUI_DrawPoint (xpos,ypos);
 			}
 			break;
 		case WM_INIT_DIALOG:
@@ -124,12 +125,12 @@ static void _cbDrawWindow(WM_MESSAGE *pMsg) {
 			xpos = pInfo->x;
 			ypos = pInfo->y;
 			sendDrawReq = 1;
-			WM_InvalidateRect(drawWin, &drawAreaRect);
+			WM_InvalidateRect (drawWin, &drawAreaRect);
 			break;
 		case WM_DELETE:
 			break;
 		default:
-			WM_DefaultProc(pMsg);
+			WM_DefaultProc (pMsg);
 		}
 }
 
@@ -137,7 +138,7 @@ static void _cbDrawWindow(WM_MESSAGE *pMsg) {
 *
 *       _cbPaintDialog
 */
-static void _cbPaintDialog(WM_MESSAGE *pMsg) {
+static void _cbPaintDialog (WM_MESSAGE* pMsg) {
 	WM_HWIN hItem,hClient;
 	int NCode;
 	int Id;
@@ -147,112 +148,112 @@ static void _cbPaintDialog(WM_MESSAGE *pMsg) {
 	switch (pMsg->MsgId) {
 		case WM_INIT_DIALOG:
 			hItem = pMsg->hWin;
-			FRAMEWIN_SetFont(hItem, GUI_FONT_13B_ASCII);
-			FRAMEWIN_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
-			FRAMEWIN_SetClientColor(hItem,GUI_LIGHTBLUE|0x7070);
-			FRAMEWIN_AddCloseButton(hItem,FRAMEWIN_BUTTON_RIGHT,0);
+			FRAMEWIN_SetFont (hItem, GUI_FONT_13B_ASCII);
+			FRAMEWIN_SetTextAlign (hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
+			FRAMEWIN_SetClientColor (hItem,GUI_LIGHTBLUE|0x7070);
+			FRAMEWIN_AddCloseButton (hItem,FRAMEWIN_BUTTON_RIGHT,0);
 			/*initialize buttons */
 			for(buttnInc = 0; buttnInc < NO_OF_PAINT_BUTTONS; buttnInc++ ) {
-				hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_SET_BLUE + buttnInc);
-				BUTTON_SetSkinClassic(hItem);
-				BUTTON_SetBkColor(hItem,BUTTON_CI_PRESSED,PaintButtonsColor[buttnInc]);
-				BUTTON_SetBkColor(hItem,BUTTON_CI_UNPRESSED,PaintButtonsColor[buttnInc]);
+				hItem = WM_GetDialogItem (pMsg->hWin, ID_BUTTON_SET_BLUE + buttnInc);
+				BUTTON_SetSkinClassic (hItem);
+				BUTTON_SetBkColor (hItem,BUTTON_CI_PRESSED,PaintButtonsColor[buttnInc]);
+				BUTTON_SetBkColor (hItem,BUTTON_CI_UNPRESSED,PaintButtonsColor[buttnInc]);
 			}
-			hClient = WM_GetClientWindow(pMsg->hWin);
-			WM_GetClientRectEx(hClient, &r);
-			vFrame = WM_CreateWindowAsChild(r.x0 +20, r.y0 + 22, r.x1 , r.y1 - 25,
-											hClient, WM_CF_SHOW, _cbDrawWindow , 0);
+			hClient = WM_GetClientWindow (pMsg->hWin);
+			WM_GetClientRectEx (hClient, &r);
+			vFrame = WM_CreateWindowAsChild (r.x0 +20, r.y0 + 22, r.x1 , r.y1 - 25,
+											 hClient, WM_CF_SHOW, _cbDrawWindow , 0);
 			break;
 		case WM_NOTIFY_PARENT:
-			Id = WM_GetId(pMsg->hWinSrc);
+			Id = WM_GetId (pMsg->hWinSrc);
 			NCode = pMsg->Data.v;
 			switch(Id) {
 				case ID_BUTTON_SET_BLUE:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
-							currentColor = BUTTON_GetBkColor(WM_GetDialogItem(pMsg->hWin, Id),
-															 BUTTON_CI_PRESSED);
+							currentColor = BUTTON_GetBkColor (WM_GetDialogItem (pMsg->hWin, Id),
+															  BUTTON_CI_PRESSED);
 							/* request repaint (WM_PAINT) for drawWin */
 							WM_InvalidateRect(drawWin, &drawAreaRect);
 							break;
 					}
 					break;
 				case ID_BUTTON_SET_GREEN:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
-							currentColor = BUTTON_GetBkColor(WM_GetDialogItem(pMsg->hWin, Id),
-															 BUTTON_CI_PRESSED);
+							currentColor = BUTTON_GetBkColor (WM_GetDialogItem (pMsg->hWin, Id),
+															  BUTTON_CI_PRESSED);
 							/* request repaint (WM_PAINT) for drawWin */
-							WM_InvalidateRect(drawWin, &drawAreaRect);
+							WM_InvalidateRect (drawWin, &drawAreaRect);
 							break;
 					}
 					break;
 				case ID_BUTTON_SET_RED:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
-							currentColor = BUTTON_GetBkColor(WM_GetDialogItem(pMsg->hWin, Id),
-															 BUTTON_CI_PRESSED);
+							currentColor = BUTTON_GetBkColor (WM_GetDialogItem (pMsg->hWin, Id),
+															  BUTTON_CI_PRESSED);
 							/* request repaint (WM_PAINT) for drawWin */
-							WM_InvalidateRect(drawWin, &drawAreaRect);
+							WM_InvalidateRect (drawWin, &drawAreaRect);
 							break;
 					}
 					break;
 				case ID_BUTTON_SET_MAGENTA:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
-							currentColor = BUTTON_GetBkColor(WM_GetDialogItem(pMsg->hWin, Id),
-															 BUTTON_CI_PRESSED);
+							currentColor = BUTTON_GetBkColor (WM_GetDialogItem (pMsg->hWin, Id),
+															  BUTTON_CI_PRESSED);
 							/* request repaint (WM_PAINT) for drawWin */
-							WM_InvalidateRect(drawWin, &drawAreaRect);
+							WM_InvalidateRect (drawWin, &drawAreaRect);
 							break;
 					}
 					break;
 				case ID_BUTTON_SET_YELLOW:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
-							currentColor = BUTTON_GetBkColor(WM_GetDialogItem(pMsg->hWin, Id),
-															 BUTTON_CI_PRESSED);
+							currentColor = BUTTON_GetBkColor (WM_GetDialogItem (pMsg->hWin, Id),
+															  BUTTON_CI_PRESSED);
 							/* request repaint (WM_PAINT) for drawWin */
-							WM_InvalidateRect(drawWin, &drawAreaRect);
+							WM_InvalidateRect (drawWin, &drawAreaRect);
 							break;
 					}
 					break;
 				case ID_BUTTON_SET_BLACK:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
-							currentColor = BUTTON_GetBkColor(WM_GetDialogItem(pMsg->hWin, Id),
-															 BUTTON_CI_PRESSED);
+							currentColor = BUTTON_GetBkColor (WM_GetDialogItem (pMsg->hWin, Id),
+															  BUTTON_CI_PRESSED);
 							/* request repaint (WM_PAINT) for drawWin */
-							WM_InvalidateRect(drawWin, &drawAreaRect);
+							WM_InvalidateRect (drawWin, &drawAreaRect);
 							break;
 					}
 					break;
 				case ID_BUTTON_NEW:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
 							/* unlock GUI clear */
 							flg = 0;
 							/* request repaint (WM_PAINT) for drawWin */
-							WM_InvalidateRect(drawWin, &drawAreaRect);
+							WM_InvalidateRect (drawWin, &drawAreaRect);
 							break;
 					}
 					break;
 				case ID_BUTTON_7:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
@@ -260,7 +261,7 @@ static void _cbPaintDialog(WM_MESSAGE *pMsg) {
 					}
 					break;
 				case ID_BUTTON_8:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
@@ -268,7 +269,7 @@ static void _cbPaintDialog(WM_MESSAGE *pMsg) {
 					}
 					break;
 				case ID_BUTTON_9:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
@@ -276,7 +277,7 @@ static void _cbPaintDialog(WM_MESSAGE *pMsg) {
 					}
 					break;
 				case ID_BUTTON_10:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
@@ -284,7 +285,7 @@ static void _cbPaintDialog(WM_MESSAGE *pMsg) {
 					}
 					break;
 				case ID_BUTTON_11:
-					switch(NCode) {
+					switch (NCode) {
 						case WM_NOTIFICATION_CLICKED:
 							break;
 						case WM_NOTIFICATION_RELEASED:
@@ -292,13 +293,13 @@ static void _cbPaintDialog(WM_MESSAGE *pMsg) {
 					}
 					break;
 			}
-			if(NCode ==  WM_NOTIFICATION_CHILD_DELETED){
-				WM_NotifyParent(WM_GetParent(pMsg->hWin), 0x500);
-				flg = 0; /*unlock GUI clear*/
+			if(WM_NOTIFICATION_CHILD_DELETED == NCode){
+				WM_NotifyParent(WM_GetParent (pMsg->hWin), 0x500);
+				flg = 0; /* unlock GUI clear */
 			}
 			break;
 		default:
-			WM_DefaultProc(pMsg);
+			WM_DefaultProc (pMsg);
 			break;
 	}
 }
@@ -309,21 +310,15 @@ static void _cbPaintDialog(WM_MESSAGE *pMsg) {
 *
 **********************************************************************
 */
-/*********************************************************************
-*
-*       CreatePAINT
-*/
 
 /**
   * @brief  CreatePAINT
   * @param  hWin: Window handle
   * @retval None
   */
-void CreatePAINT(WM_HWIN hWin);
-void CreatePAINT(WM_HWIN hWin)
-{
-	GUI_CreateDialogBox(_aDialogPaintCreate, GUI_COUNTOF(_aDialogPaintCreate),
-						_cbPaintDialog, hWin, 0, 0);
+void CreatePAINT (WM_HWIN hWin);
+void CreatePAINT (WM_HWIN hWin) {
+	GUI_CreateDialogBox (_aDialogPaintCreate, GUI_COUNTOF (_aDialogPaintCreate),
+						 _cbPaintDialog, hWin, 0, 0);
 }
-
 /*************************** End of file ****************************/

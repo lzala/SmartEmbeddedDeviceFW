@@ -31,7 +31,7 @@ monitor poll
 monitor reset halt
 #monitor flash erase_sector 0 0 11
 #monitor flash write_image "G:/Workspace/SmartEmbeddedDeviceFW/Debug/SmartEmbeddedDeviceFW.elf"
-monitor reset halt
+#monitor reset halt
 set *0xE0042004 = (*0xE0042004) | 0x7
 tbreak main
 
