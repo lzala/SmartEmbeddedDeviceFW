@@ -76,69 +76,70 @@ static const GUI_WIDGET_CREATE_INFO _aGPSCreate[] = {
 *
 *       _cbDialog
 */
-static void _cbGPSDialog (WM_MESSAGE* pMsg) {
+static void _cbGPSDialog(WM_MESSAGE* pMsg) {
 	WM_HWIN hItem;
 	int NCode;
 	int Id;
 
 	switch (pMsg->MsgId) {
-		/* Initialization of 'GPS' */
-		hItem = pMsg->hWin;
-		FRAMEWIN_SetFont (hItem, GUI_FONT_13B_ASCII);
-		FRAMEWIN_SetTextAlign (hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
-		FRAMEWIN_AddCloseButton (hItem,FRAMEWIN_BUTTON_RIGHT,0);
-		/* Initialization of 'GPS Streaming:' */
-		hItem = WM_GetDialogItem (pMsg->hWin, ID_TEXT_0);
-		TEXT_SetFont (hItem, GUI_FONT_13B_ASCII);
-		TEXT_SetTextColor (hItem, 0x00FF0000);
-		/* Initialization of 'No. of satellites:' */
-		hItem = WM_GetDialogItem (pMsg->hWin, ID_TEXT_1);
-		TEXT_SetFont (hItem, GUI_FONT_13B_ASCII);
-		TEXT_SetTextColor (hItem, 0x00C08000);
-		/* Initialization of 'LAT:' */
-		hItem = WM_GetDialogItem (pMsg->hWin, ID_TEXT_2);
-		TEXT_SetFont (hItem, GUI_FONT_13B_ASCII);
-		TEXT_SetTextColor (hItem, 0x00C08000);
-		/* Initialization of 'LON:' */
-		hItem = WM_GetDialogItem (pMsg->hWin, ID_TEXT_3);
-		TEXT_SetFont (hItem, GUI_FONT_13B_ASCII);
-		TEXT_SetTextColor (hItem, 0x00C08000);
-		/* Initialization of 'ALT:' */
-		hItem = WM_GetDialogItem (pMsg->hWin, ID_TEXT_4);
-		TEXT_SetFont (hItem, GUI_FONT_13B_ASCII);
-		TEXT_SetTextColor (hItem, 0x00C08000);
-		/* Initialization of 'TIME:' */
-		hItem = WM_GetDialogItem (pMsg->hWin, ID_TEXT_5);
-		TEXT_SetFont (hItem, GUI_FONT_13B_ASCII);
-		TEXT_SetTextColor (hItem, 0x00C08000);
-		/* Initialization of 'DATE:' */
-		hItem = WM_GetDialogItem (pMsg->hWin, ID_TEXT_6);
-		TEXT_SetTextColor (hItem, 0x00C08000);
-		TEXT_SetFont (hItem, GUI_FONT_13B_ASCII);
-		/* Initialization of 'SPEED:' */
-		hItem = WM_GetDialogItem (pMsg->hWin, ID_TEXT_7);
-		TEXT_SetFont (hItem, GUI_FONT_13B_ASCII);
-		TEXT_SetTextColor (hItem, 0x00C08000);
-		break;
-	case WM_NOTIFY_PARENT:
-		Id = WM_GetId (pMsg->hWinSrc);
-		NCode = pMsg->Data.v;
-		switch (Id) {
-			case ID_BUTTON_0:
-				switch (NCode) {
-					case WM_NOTIFICATION_CLICKED:
-						break;
-					case WM_NOTIFICATION_RELEASED:
-						break;
-				}
-				break;
-		}
-		if (WM_NOTIFICATION_CHILD_DELETED == NCode) {
-			WM_NotifyParent(WM_GetParent (pMsg->hWin), 0x500);
-		}
-		break;
+		case WM_INIT_DIALOG:
+			/* Initialization of 'GPS' */
+			hItem = pMsg->hWin;
+			FRAMEWIN_SetFont(hItem, GUI_FONT_13B_ASCII);
+			FRAMEWIN_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
+			FRAMEWIN_AddCloseButton(hItem,FRAMEWIN_BUTTON_RIGHT,0);
+			/* Initialization of 'GPS Streaming:' */
+			hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+			TEXT_SetFont(hItem, GUI_FONT_13B_ASCII);
+			TEXT_SetTextColor(hItem, 0x00FF0000);
+			/* Initialization of 'No. of satellites:' */
+			hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
+			TEXT_SetFont(hItem, GUI_FONT_13B_ASCII);
+			TEXT_SetTextColor(hItem, 0x00C08000);
+			/* Initialization of 'LAT:' */
+			hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_2);
+			TEXT_SetFont(hItem, GUI_FONT_13B_ASCII);
+			TEXT_SetTextColor(hItem, 0x00C08000);
+			/* Initialization of 'LON:' */
+			hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_3);
+			TEXT_SetFont(hItem, GUI_FONT_13B_ASCII);
+			TEXT_SetTextColor(hItem, 0x00C08000);
+			/* Initialization of 'ALT:' */
+			hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_4);
+			TEXT_SetFont(hItem, GUI_FONT_13B_ASCII);
+			TEXT_SetTextColor(hItem, 0x00C08000);
+			/* Initialization of 'TIME:' */
+			hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_5);
+			TEXT_SetFont(hItem, GUI_FONT_13B_ASCII);
+			TEXT_SetTextColor(hItem, 0x00C08000);
+			/* Initialization of 'DATE:' */
+			hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_6);
+			TEXT_SetTextColor(hItem, 0x00C08000);
+			TEXT_SetFont(hItem, GUI_FONT_13B_ASCII);
+			/* Initialization of 'SPEED:' */
+			hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_7);
+			TEXT_SetFont(hItem, GUI_FONT_13B_ASCII);
+			TEXT_SetTextColor(hItem, 0x00C08000);
+			break;
+		case WM_NOTIFY_PARENT:
+			Id = WM_GetId(pMsg->hWinSrc);
+			NCode = pMsg->Data.v;
+			switch (Id) {
+				case ID_BUTTON_0:
+					switch (NCode) {
+						case WM_NOTIFICATION_CLICKED:
+							break;
+						case WM_NOTIFICATION_RELEASED:
+							break;
+					}
+					break;
+			}
+			if (WM_NOTIFICATION_CHILD_DELETED == NCode) {
+				WM_NotifyParent(WM_GetParent(pMsg->hWin), 0x500);
+			}
+			break;
 		default:
-			WM_DefaultProc (pMsg);
+			WM_DefaultProc(pMsg);
 			break;
 	}
 }
@@ -155,6 +156,6 @@ static void _cbGPSDialog (WM_MESSAGE* pMsg) {
 */
 void CreateGPS(WM_HWIN hWin);
 void CreateGPS(WM_HWIN hWin) {
-	GUI_CreateDialogBox (_aGPSCreate, GUI_COUNTOF (_aGPSCreate), _cbGPSDialog, hWin, 0, 0);
+	GUI_CreateDialogBox(_aGPSCreate, GUI_COUNTOF(_aGPSCreate), _cbGPSDialog, hWin, 0, 0);
 }
 /*************************** End of file ****************************/

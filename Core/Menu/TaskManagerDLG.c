@@ -44,7 +44,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogTaskManagerCreate[] = {
 *
 *       _cbTaskManagerDialog
 */
-static void _cbTaskManagerDialog (WM_MESSAGE* pMsg) {
+static void _cbTaskManagerDialog(WM_MESSAGE* pMsg) {
 	WM_HWIN hItem;
 	int Id, NCode;
 
@@ -52,13 +52,13 @@ static void _cbTaskManagerDialog (WM_MESSAGE* pMsg) {
 		case WM_INIT_DIALOG:
 			/* Initialization of 'TaskManager' */
 			hItem = pMsg->hWin;
-			FRAMEWIN_SetFont (hItem, GUI_FONT_13HB_ASCII);
-			FRAMEWIN_SetTextAlign (hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
-			FRAMEWIN_AddCloseButton (hItem,FRAMEWIN_BUTTON_RIGHT,0);
+			FRAMEWIN_SetFont(hItem, GUI_FONT_13HB_ASCII);
+			FRAMEWIN_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
+			FRAMEWIN_AddCloseButton(hItem,FRAMEWIN_BUTTON_RIGHT,0);
 			break;
 		case WM_NOTIFY_PARENT:
 			/* Id of widget */
-			Id = WM_GetId (pMsg->hWinSrc);
+			Id = WM_GetId(pMsg->hWinSrc);
 			/* Notification code */
 			NCode = pMsg->Data.v;
 			switch (NCode) {
@@ -67,10 +67,10 @@ static void _cbTaskManagerDialog (WM_MESSAGE* pMsg) {
 			}
 			break;
 			case WM_DELETE:
-				WM_NotifyParent (WM_GetParent(pMsg->hWin), 0x500);
+				WM_NotifyParent(WM_GetParent(pMsg->hWin), 0x500);
 				break;
 			default:
-				WM_DefaultProc (pMsg);
+				WM_DefaultProc(pMsg);
 				break;
 	}
 }
@@ -87,9 +87,9 @@ static void _cbTaskManagerDialog (WM_MESSAGE* pMsg) {
   * @param  hWin: Window handle
   * @retval None
   */
-void CreateTaskManager (WM_HWIN hWin);
-void CreateTaskManager (WM_HWIN hWin) {
-	GUI_CreateDialogBox (_aDialogTaskManagerCreate, GUI_COUNTOF (_aDialogTaskManagerCreate),
-						 _cbTaskManagerDialog, hWin, 0, 0);
+void CreateTaskManager(WM_HWIN hWin);
+void CreateTaskManager(WM_HWIN hWin) {
+	GUI_CreateDialogBox(_aDialogTaskManagerCreate, GUI_COUNTOF(_aDialogTaskManagerCreate),
+						_cbTaskManagerDialog, hWin, 0, 0);
 }
 /*************************** End of file ****************************/

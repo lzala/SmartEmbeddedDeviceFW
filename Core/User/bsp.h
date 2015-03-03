@@ -1,28 +1,10 @@
 /**
   ******************************************************************************
   * @file    bsp.h
-  * @author  MCD Application Team
+  * @author  Lucian Zala
   * @version V1.0.1
-  * @date    11-November-2013
-  * @brief   Header for bsp module
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
-  *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  *
-  ******************************************************************************
+  * @date    03-03-2015
+  * @brief   board support package routines
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -40,13 +22,13 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-uint32_t LowLevel_Init (void);
+uint32_t LowLevel_Init(void);
 void BSP_Pointer_Update(void);
+void init_USART1(void);
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* __BSP_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+/*************************** End of file *****************************/

@@ -73,6 +73,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmartEmbeddedDeviceFW/Libraries/STM32_USB_Device_Library/Class/cdc/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmartEmbeddedDeviceFW/Utilities/STM32F429I-Discovery}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmartEmbeddedDeviceFW/Core/Icon}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmartEmbeddedDeviceFW/Core/Hal}&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1234340173" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_STDPERIPH_DRIVER"/>
